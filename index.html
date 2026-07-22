@@ -1,392 +1,1051 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProfilePilot AI | LinkedIn Profile Optimizer</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        ProfilePilot AI | LinkedIn Profile Intelligence
+    </title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
 <body>
 
-<!-- Navbar -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg bg-white">
+
     <div class="container">
 
-        <a class="navbar-brand fw-bold fs-3 text-primary" href="#">
-            ProfilePilot AI
+        <!-- BRAND -->
+
+        <a class="navbar-brand" href="index.html">
+
+            <span class="logo-icon">
+
+                <i class="bi bi-stars"></i>
+
+            </span>
+
+            ProfilePilot <span>AI</span>
+
         </a>
 
-        <button class="navbar-toggler"
-                data-bs-toggle="collapse"
-                data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="menu">
+        <!-- RIGHT BUTTON -->
 
-            <ul class="navbar-nav ms-auto">
+        <a
+            href="upload.html"
+            class="btn btn-outline-primary"
+        >
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
+            <i class="bi bi-stars me-2"></i>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
-                </li>
+            Analyze Profile
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#works">How It Works</a>
-                </li>
+        </a>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+    </div>
 
-            </ul>
+</nav>
+
+
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+
+            <!-- LEFT CONTENT -->
+
+            <div class="col-lg-6">
+
+
+                <span class="ai-badge">
+
+                    <i class="bi bi-stars"></i>
+
+                    AI PROFILE INTELLIGENCE
+
+                </span>
+
+
+                <h1>
+
+                    Build a LinkedIn Profile
+                    <span class="gradient-text">
+                        Recruiters Notice.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Upload your LinkedIn profile and discover
+                    exactly how it performs, what needs improvement,
+                    and how to make your profile stronger for
+                    recruiters and job opportunities.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="upload.html"
+                        class="btn btn-primary btn-lg"
+                    >
+
+                        <i class="bi bi-upload me-2"></i>
+
+                        Analyze My Profile
+
+                    </a>
+
+
+                    <a
+                        href="#features"
+                        class="btn btn-outline-primary btn-lg"
+                    >
+
+                        Explore Features
+
+                    </a>
+
+                </div>
+
+
+                <!-- TRUST POINTS -->
+
+                <div class="trust-row">
+
+                    <div class="trust-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        AI-Powered Analysis
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Personalized Suggestions
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Recruiter Focused
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT DASHBOARD PREVIEW -->
+
+            <div class="col-lg-6">
+
+                <div class="hero-preview">
+
+
+                    <!-- PREVIEW HEADER -->
+
+                    <div class="preview-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE PERFORMANCE
+                            </span>
+
+                            <h3>
+                                LinkedIn Analysis
+                            </h3>
+
+                        </div>
+
+
+                        <span class="preview-icon">
+
+                            <i class="bi bi-graph-up-arrow"></i>
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- SCORE PREVIEW -->
+
+                    <div class="preview-score-area">
+
+
+                        <div class="mini-score-circle">
+
+                            <div class="mini-score-inner">
+
+                                <strong>
+                                    82
+                                </strong>
+
+                                <span>
+                                    /100
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="preview-details">
+
+
+                            <div class="preview-score-item">
+
+                                <div class="preview-score-title">
+
+                                    <span>
+                                        Headline
+                                    </span>
+
+                                    <strong>
+                                        88
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="score-track">
+
+                                    <div
+                                        class="score-fill"
+                                        style="width:88%">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="preview-score-item">
+
+                                <div class="preview-score-title">
+
+                                    <span>
+                                        About
+                                    </span>
+
+                                    <strong>
+                                        76
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="score-track">
+
+                                    <div
+                                        class="score-fill purple"
+                                        style="width:76%">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="preview-score-item">
+
+                                <div class="preview-score-title">
+
+                                    <span>
+                                        Skills
+                                    </span>
+
+                                    <strong>
+                                        91
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="score-track">
+
+                                    <div
+                                        class="score-fill cyan"
+                                        style="width:91%">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="preview-score-item">
+
+                                <div class="preview-score-title">
+
+                                    <span>
+                                        Experience
+                                    </span>
+
+                                    <strong>
+                                        72
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="score-track">
+
+                                    <div
+                                        class="score-fill violet"
+                                        style="width:72%">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- AI MESSAGE -->
+
+                    <div class="preview-message">
+
+                        <span class="preview-message-icon">
+
+                            <i class="bi bi-stars"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <span>
+                                AI RECOMMENDATION
+                            </span>
+
+                            <p>
+
+                                Improve your headline and experience
+                                section to increase recruiter visibility.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
-</nav>
-
-
-<!-- Hero Section -->
-
-<section class="hero">
-
-<div class="container">
-
-<div class="row align-items-center">
-
-<div class="col-lg-6">
-
-<span class="badge bg-primary mb-3 px-3 py-2">
-AI Powered LinkedIn Optimizer
-</span>
-
-<h1 class="display-4 fw-bold">
-
-Optimize Your LinkedIn Profile with AI
-
-</h1>
-
-<p class="lead mt-4">
-
-Upload your LinkedIn Profile PDF and receive
-professional AI feedback including profile score,
-ATS analysis, recruiter suggestions, and profile improvements.
-
-</p>
-
-<div class="mt-4">
-
-<a href="upload.html" class="btn btn-primary btn-lg me-3">
-
-<i class="bi bi-upload"></i>
-
-Upload Profile
-
-</a>
-
-<a href="#features" class="btn btn-outline-primary btn-lg">
-
-Learn More
-
-</a>
-
-</div>
-
-</div>
-
-
-<div class="col-lg-6 text-center">
-
-<img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800"
-class="img-fluid hero-image">
-
-</div>
-
-</div>
-
-</div>
 
 </section>
 
 
-<!-- Features -->
 
-<section id="features" class="py-5">
+<!-- =====================================================
+     FEATURES
+===================================================== -->
 
-<div class="container">
+<section
+    class="features-section"
+    id="features"
+>
 
-<h2 class="text-center fw-bold mb-5">
+    <div class="container">
 
-Why Choose ProfilePilot AI?
 
-</h2>
+        <!-- SECTION HEADER -->
 
-<div class="row g-4">
+        <div class="section-heading">
 
-<div class="col-md-3">
+            <span class="ai-badge">
 
-<div class="feature-card">
+                <i class="bi bi-stars"></i>
 
-<i class="bi bi-robot display-4 text-primary"></i>
+                SMART PROFILE ANALYSIS
 
-<h5 class="mt-3">
+            </span>
 
-AI Analysis
 
-</h5>
+            <h2>
 
-<p>
+                Everything You Need to
+                Improve Your LinkedIn Profile
 
-Smart profile analysis using advanced AI.
+            </h2>
 
-</p>
 
-</div>
+            <p>
 
-</div>
+                ProfilePilot AI evaluates the most important
+                sections of your profile and gives you clear,
+                actionable recommendations.
 
+            </p>
 
-<div class="col-md-3">
+        </div>
 
-<div class="feature-card">
 
-<i class="bi bi-graph-up-arrow display-4 text-success"></i>
 
-<h5 class="mt-3">
+        <div class="row g-4">
 
-ATS Score
 
-</h5>
+            <!-- FEATURE 1 -->
 
-<p>
+            <div class="col-lg-3 col-md-6">
 
-Know how recruiters view your profile.
+                <div class="feature-card">
 
-</p>
+                    <span class="feature-icon blue">
 
-</div>
+                        <i class="bi bi-speedometer2"></i>
 
-</div>
+                    </span>
 
 
-<div class="col-md-3">
+                    <h3>
+                        Profile Score
+                    </h3>
 
-<div class="feature-card">
 
-<i class="bi bi-lightbulb display-4 text-warning"></i>
+                    <p>
 
-<h5 class="mt-3">
+                        Get an overall profile score and understand
+                        how strong your LinkedIn profile currently is.
 
-Suggestions
+                    </p>
 
-</h5>
+                </div>
 
-<p>
+            </div>
 
-Improve headline, about, skills and projects.
 
-</p>
 
-</div>
+            <!-- FEATURE 2 -->
 
-</div>
+            <div class="col-lg-3 col-md-6">
 
+                <div class="feature-card">
 
-<div class="col-md-3">
+                    <span class="feature-icon purple">
 
-<div class="feature-card">
+                        <i class="bi bi-bar-chart-line"></i>
 
-<i class="bi bi-speedometer2 display-4 text-danger"></i>
+                    </span>
 
-<h5 class="mt-3">
 
-Instant Report
+                    <h3>
+                        Section Analysis
+                    </h3>
 
-</h5>
 
-<p>
+                    <p>
 
-Receive your personalized report within seconds.
+                        See individual scores for your headline,
+                        about, experience, skills, education
+                        and projects.
 
-</p>
+                    </p>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</div>
 
-</div>
 
-</section>
+            <!-- FEATURE 3 -->
 
+            <div class="col-lg-3 col-md-6">
 
+                <div class="feature-card">
 
-<!-- How it Works -->
+                    <span class="feature-icon green">
 
-<section id="works" class="py-5 bg-light">
+                        <i class="bi bi-stars"></i>
 
-<div class="container">
+                    </span>
 
-<h2 class="text-center fw-bold mb-5">
 
-How It Works
+                    <h3>
+                        AI Improvements
+                    </h3>
 
-</h2>
 
-<div class="row text-center">
+                    <p>
 
-<div class="col-md-4">
+                        Compare your current content with
+                        AI-recommended improvements for each
+                        profile section.
 
-<div class="step-circle">
+                    </p>
 
-1
+                </div>
 
-</div>
+            </div>
 
-<h4>
 
-Upload PDF
 
-</h4>
+            <!-- FEATURE 4 -->
 
-<p>
+            <div class="col-lg-3 col-md-6">
 
-Upload your LinkedIn Profile PDF.
+                <div class="feature-card">
 
-</p>
+                    <span class="feature-icon orange">
 
-</div>
+                        <i class="bi bi-briefcase"></i>
 
+                    </span>
 
-<div class="col-md-4">
 
-<div class="step-circle">
+                    <h3>
+                        Career Matches
+                    </h3>
 
-2
 
-</div>
+                    <p>
 
-<h4>
+                        Discover job roles that align with your
+                        skills, education, projects and experience.
 
-AI Analysis
+                    </p>
 
-</h4>
+                </div>
 
-<p>
+            </div>
 
-Gemini AI analyzes every section of your profile.
+        </div>
 
-</p>
-
-</div>
-
-
-<div class="col-md-4">
-
-<div class="step-circle">
-
-3
-
-</div>
-
-<h4>
-
-Get Suggestions
-
-</h4>
-
-<p>
-
-Receive personalized improvements and score.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
 
-<!-- CTA -->
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
 
-<section class="cta">
+<section class="works-section">
 
-<div class="container text-center">
+    <div class="container">
 
-<h2 class="fw-bold">
 
-Ready to Optimize Your LinkedIn Profile?
+        <div class="section-heading">
 
-</h2>
+            <span class="ai-badge">
 
-<p class="mt-3">
+                <i class="bi bi-lightning-charge"></i>
 
-Join students and professionals using AI to improve their careers.
+                SIMPLE PROCESS
 
-</p>
+            </span>
 
-<a href="#" class="btn btn-light btn-lg mt-3">
 
-Analyze My Profile
+            <h2>
+                From Profile to Insights in Three Steps
+            </h2>
 
-</a>
 
-</div>
+            <p>
+
+                Upload your LinkedIn profile PDF and let
+                ProfilePilot AI turn it into clear,
+                recruiter-focused recommendations.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="row g-4">
+
+
+            <!-- STEP 1 -->
+
+            <div class="col-md-4">
+
+                <div class="process-card">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+
+                    <span class="process-icon">
+
+                        <i class="bi bi-cloud-arrow-up"></i>
+
+                    </span>
+
+
+                    <h3>
+                        Upload Your Profile
+                    </h3>
+
+
+                    <p>
+
+                        Export your LinkedIn profile as a PDF
+                        and upload it securely to ProfilePilot AI.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STEP 2 -->
+
+            <div class="col-md-4">
+
+                <div class="process-card">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+
+                    <span class="process-icon purple">
+
+                        <i class="bi bi-cpu"></i>
+
+                    </span>
+
+
+                    <h3>
+                        AI Analyzes It
+                    </h3>
+
+
+                    <p>
+
+                        AI evaluates your headline, about section,
+                        experience, skills, education and projects.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STEP 3 -->
+
+            <div class="col-md-4">
+
+                <div class="process-card">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+
+                    <span class="process-icon green">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                    </span>
+
+
+                    <h3>
+                        Improve Your Profile
+                    </h3>
+
+
+                    <p>
+
+                        Review your scores and compare your current
+                        profile with AI-generated recommendations.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- Footer -->
+
+<!-- =====================================================
+     COMPARISON PREVIEW
+===================================================== -->
+
+<section class="comparison-preview-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+
+            <!-- TEXT -->
+
+            <div class="col-lg-5">
+
+                <span class="ai-badge">
+
+                    <i class="bi bi-arrow-left-right"></i>
+
+                    CURRENT VS RECOMMENDED
+
+                </span>
+
+
+                <h2 class="comparison-title">
+
+                    Know Exactly What
+                    You Should Change.
+
+                </h2>
+
+
+                <p class="comparison-description">
+
+                    Instead of giving generic advice,
+                    ProfilePilot AI shows what your profile
+                    currently says and what you can replace it
+                    with to create a stronger professional profile.
+
+                </p>
+
+
+                <div class="benefit-list">
+
+
+                    <div class="benefit-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Headline improvements
+
+                    </div>
+
+
+                    <div class="benefit-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Better About section
+
+                    </div>
+
+
+                    <div class="benefit-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Experience recommendations
+
+                    </div>
+
+
+                    <div class="benefit-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Skills and project suggestions
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COMPARISON CARD -->
+
+            <div class="col-lg-7">
+
+                <div class="comparison-demo">
+
+
+                    <div class="comparison-demo-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE SECTION
+                            </span>
+
+                            <h3>
+                                Headline
+                            </h3>
+
+                        </div>
+
+
+                        <div class="demo-score">
+
+                            85
+
+                            <small>
+                                /100
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="demo-grid">
+
+
+                        <!-- CURRENT -->
+
+                        <div class="demo-version current">
+
+                            <span class="demo-label">
+
+                                CURRENT PROFILE
+
+                            </span>
+
+
+                            <h4>
+                                What you have now
+                            </h4>
+
+
+                            <p>
+
+                                BCA Student | Data Science |
+                                Frontend Developer
+
+                            </p>
+
+                        </div>
+
+
+
+                        <div class="demo-arrow">
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </div>
+
+
+
+                        <!-- AI -->
+
+                        <div class="demo-version recommended">
+
+                            <span class="demo-label ai">
+
+                                AI RECOMMENDED
+
+                            </span>
+
+
+                            <h4>
+                                Suggested improvement
+                            </h4>
+
+
+                            <p>
+
+                                Aspiring Data Analyst |
+                                Python • SQL • Power BI |
+                                Data Science Student
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-card">
+
+            <span class="cta-icon">
+
+                <i class="bi bi-stars"></i>
+
+            </span>
+
+
+            <span class="small-label">
+                READY TO GET STARTED?
+            </span>
+
+
+            <h2>
+
+                Make Your LinkedIn Profile
+                Recruiter-Ready.
+
+            </h2>
+
+
+            <p>
+
+                Upload your LinkedIn profile and receive
+                personalized AI insights in seconds.
+
+            </p>
+
+
+            <a
+                href="upload.html"
+                class="btn btn-primary btn-lg"
+            >
+
+                <i class="bi bi-upload me-2"></i>
+
+                Analyze My Profile
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-<div class="container text-center">
+    <div class="container">
 
-<h4 class="text-primary fw-bold">
+        <div class="footer-content">
 
-ProfilePilot AI
 
-</h4>
+            <div>
 
-<p>
+                <a
+                    href="index.html"
+                    class="footer-brand"
+                >
 
-AI Powered LinkedIn Profile Optimizer
+                    <span class="footer-logo">
 
-</p>
+                        <i class="bi bi-stars"></i>
 
-<p>
+                    </span>
 
-© 2026 All Rights Reserved.
+                    ProfilePilot <span>AI</span>
 
-</p>
+                </a>
 
-</div>
+
+                <p>
+
+                    AI-powered LinkedIn profile intelligence.
+
+                </p>
+
+            </div>
+
+
+            <div class="footer-right">
+
+                © 2026 ProfilePilot AI
+
+            </div>
+
+        </div>
+
+    </div>
 
 </footer>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="script/script.js"></script>
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
 
 </body>
+
 </html>
