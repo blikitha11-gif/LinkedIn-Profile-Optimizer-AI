@@ -42,10 +42,10 @@ async def analyze(file: UploadFile = File(...)):
     # Extract text
     profile_text = extract_text_from_pdf(file_path)
 
-    # Analyze using Gemini
-    report = analyze_profile(profile_text)
+    # Analyze LinkedIn profile using Groq
+    analysis = analyze_profile(profile_text)
 
     return {
         "status": "success",
-        "report": report
+        "analysis": analysis
     }
