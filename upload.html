@@ -4,121 +4,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Upload LinkedIn Profile | ProfilePilot AI</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/upload.css">
 </head>
 
+
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary fs-3" href="index.html">
-                ProfilePilot AI
-            </a>
-        </div>
-    </nav>
 
-    <section class="upload-section">
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-        <div class="container">
+<nav class="navbar navbar-expand-lg bg-white">
 
-            <div class="row justify-content-center">
+    <div class="container">
 
-                <div class="col-lg-7">
+        <a class="navbar-brand" href="index.html">
 
-                    <div class="upload-card">
+            <span class="logo-icon">
+                <i class="bi bi-stars"></i>
+            </span>
 
-                        <div class="text-center">
+            ProfilePilot <span>AI</span>
 
-                            <div class="upload-icon">
+        </a>
+
+
+        <a href="index.html" class="btn btn-outline-primary">
+
+            <i class="bi bi-house me-2"></i>
+
+            Home
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     UPLOAD PAGE
+===================================================== -->
+
+<main class="upload-page">
+
+    <div class="container">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="upload-header">
+
+            <span class="ai-badge">
+
+                <i class="bi bi-stars"></i>
+
+                AI PROFILE INTELLIGENCE
+
+            </span>
+
+
+            <h1>
+                Analyze Your LinkedIn Profile
+            </h1>
+
+
+            <p>
+
+                Upload your LinkedIn profile PDF and let
+                ProfilePilot AI evaluate your profile,
+                identify improvement opportunities and generate
+                recruiter-focused recommendations.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- UPLOAD AREA -->
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-8 col-lg-9">
+
+
+                <div class="upload-card">
+
+
+                    <!-- CARD HEADER -->
+
+                    <div class="card-heading">
+
+                        <div class="heading-left">
+
+                            <span class="heading-icon">
+
                                 <i class="bi bi-cloud-arrow-up"></i>
+
+                            </span>
+
+
+                            <div>
+
+                                <span class="small-label">
+                                    LINKEDIN PROFILE
+                                </span>
+
+                                <h2>
+                                    Upload Profile PDF
+                                </h2>
+
                             </div>
-
-                            <h2 class="fw-bold mt-3">
-                                Upload Your LinkedIn Profile
-                            </h2>
-
-                            <p class="text-muted">
-                                Upload your LinkedIn Profile PDF and let AI analyze your profile.
-                            </p>
 
                         </div>
 
-                        <form id="uploadForm">
 
-                            <div class="drop-area">
+                        <span class="pdf-badge">
 
-                                <input type="file" id="fileInput" name="file" accept=".pdf" hidden>
+                            <i class="bi bi-file-earmark-pdf"></i>
 
-                                <label for="fileInput">
+                            PDF
 
-                                    <i class="bi bi-file-earmark-pdf display-4 text-danger"></i>
+                        </span>
 
-                                    <h5 class="mt-3">
-                                        Drag & Drop PDF Here
-                                    </h5>
+                    </div>
 
-                                    <p class="text-muted">
-                                        or click to browse
-                                    </p>
 
-                                </label>
 
-                            </div>
+                    <!-- FORM -->
 
-                            <div class="file-box mt-4 d-none" id="fileBox">
+                    <form id="uploadForm">
 
-                                <i class="bi bi-file-earmark-pdf-fill text-danger fs-3"></i>
 
-                                <span id="fileName"></span>
+                        <!-- DROP ZONE -->
 
-                                <button type="button" class="btn btn-outline-danger btn-sm" id="removeBtn">
+                        <div class="drop-area" id="dropArea">
 
-                                    Remove
+                            <input
+                                type="file"
+                                id="fileInput"
+                                name="file"
+                                accept=".pdf,application/pdf"
+                                hidden
+                            >
 
-                                </button>
 
-                            </div>
+                            <label
+                                for="fileInput"
+                                class="drop-content"
+                            >
 
-                            <div class="progress mt-4 d-none" id="progressBox">
+                                <span class="upload-main-icon">
 
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%">
+                                    <i class="bi bi-cloud-arrow-up"></i>
 
-                                    Uploading...
+                                </span>
+
+
+                                <h3>
+                                    Upload Your LinkedIn Profile
+                                </h3>
+
+
+                                <p>
+
+                                    Drag and drop your LinkedIn PDF here,
+                                    or click to browse your files.
+
+                                </p>
+
+
+                                <span class="browse-button">
+
+                                    <i class="bi bi-folder2-open me-2"></i>
+
+                                    Browse PDF
+
+                                </span>
+
+
+                                <small>
+                                    PDF files only
+                                </small>
+
+                            </label>
+
+                        </div>
+
+
+
+                        <!-- SELECTED FILE -->
+
+                        <div
+                            class="selected-file d-none"
+                            id="fileBox"
+                        >
+
+                            <div class="file-left">
+
+                                <span class="file-icon">
+
+                                    <i class="bi bi-file-earmark-pdf-fill"></i>
+
+                                </span>
+
+
+                                <div class="file-information">
+
+                                    <span class="file-status">
+                                        SELECTED FILE
+                                    </span>
+
+                                    <strong id="fileName">
+                                        profile.pdf
+                                    </strong>
+
+                                    <small id="fileSize">
+                                        Ready for analysis
+                                    </small>
 
                                 </div>
 
                             </div>
 
-                            <div class="d-grid mt-4">
 
-                                <button class="btn btn-primary btn-lg" type="submit">
+                            <button
+                                type="button"
+                                class="remove-button"
+                                id="removeBtn"
+                            >
 
-                                    Analyze Profile
+                                <i class="bi bi-trash3"></i>
 
-                                </button>
+                                Remove
+
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- PROGRESS -->
+
+                        <div
+                            class="analysis-progress d-none"
+                            id="progressBox"
+                        >
+
+                            <div class="progress-heading">
+
+                                <div>
+
+                                    <span class="progress-spinner"></span>
+
+                                    <strong>
+                                        Analyzing your profile...
+                                    </strong>
+
+                                </div>
+
+
+                                <span class="ai-processing">
+                                    AI PROCESSING
+                                </span>
 
                             </div>
 
-                            <div class="text-center mt-4">
 
-                                <small class="text-muted">
+                            <div class="progress">
 
-                                    <i class="bi bi-shield-check text-success"></i>
-
-                                    Your PDF is securely processed and not permanently stored.
-
-                                </small>
+                                <div
+                                    class="progress-bar progress-bar-striped progress-bar-animated"
+                                    role="progressbar"
+                                    style="width:100%"
+                                ></div>
 
                             </div>
 
-                        </form>
 
-                    </div>
+                            <p>
+
+                                ProfilePilot AI is reading your LinkedIn
+                                profile and preparing personalized insights.
+                                This may take a few seconds.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- ERROR -->
+
+                        <div
+                            class="error-box d-none"
+                            id="errorBox"
+                        >
+
+                            <i class="bi bi-exclamation-circle-fill"></i>
+
+                            <span id="errorMessage"></span>
+
+                        </div>
+
+
+
+                        <!-- SUBMIT -->
+
+                        <div class="submit-area">
+
+                            <button
+                                class="btn btn-primary btn-lg analyze-button"
+                                id="analyzeButton"
+                                type="submit"
+                            >
+
+                                <i class="bi bi-stars me-2"></i>
+
+                                Analyze My Profile
+
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- PRIVACY -->
+
+                        <div class="privacy-message">
+
+                            <span class="privacy-icon">
+
+                                <i class="bi bi-shield-check"></i>
+
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Your profile stays private
+                                </strong>
+
+                                <p>
+
+                                    Your PDF is used only for analysis
+                                    and is not permanently stored by
+                                    ProfilePilot AI.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
 
                 </div>
 
@@ -126,83 +386,627 @@
 
         </div>
 
-    </section>
-    <script>
 
-        const form = document.getElementById("uploadForm");
-        const input = document.getElementById("fileInput");
-        const fileName = document.getElementById("fileName");
-        const fileBox = document.getElementById("fileBox");
-        const removeBtn = document.getElementById("removeBtn");
-        const progress = document.getElementById("progressBox");
 
-        input.addEventListener("change", () => {
+        <!-- WHAT YOU GET -->
 
-            if (input.files.length > 0) {
-                fileName.innerHTML = input.files[0].name;
-                fileBox.classList.remove("d-none");
-            }
+        <section class="what-you-get">
+
+            <div class="section-title">
+
+                <span class="small-label">
+                    YOUR ANALYSIS REPORT
+                </span>
+
+                <h2>
+                    What You'll Get
+                </h2>
+
+                <p>
+
+                    Your report turns your LinkedIn profile
+                    into clear scores and actionable improvements.
+
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <div class="col-md-4">
+
+                    <div class="info-card">
+
+                        <span class="info-icon blue">
+
+                            <i class="bi bi-speedometer2"></i>
+
+                        </span>
+
+
+                        <h3>
+                            Profile Scores
+                        </h3>
+
+
+                        <p>
+
+                            Overall and section-level scores for
+                            your headline, about, experience,
+                            skills, education and projects.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <div class="info-card">
+
+                        <span class="info-icon purple">
+
+                            <i class="bi bi-arrow-left-right"></i>
+
+                        </span>
+
+
+                        <h3>
+                            Current vs Recommended
+                        </h3>
+
+
+                        <p>
+
+                            Compare what your profile says now
+                            with AI-generated recommendations
+                            for stronger positioning.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <div class="info-card">
+
+                        <span class="info-icon green">
+
+                            <i class="bi bi-briefcase"></i>
+
+                        </span>
+
+
+                        <h3>
+                            Career Insights
+                        </h3>
+
+
+                        <p>
+
+                            Discover priority improvements and
+                            job roles aligned with your profile,
+                            skills and experience.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-content">
+
+
+            <div>
+
+                <a
+                    href="index.html"
+                    class="footer-brand"
+                >
+
+                    <span class="footer-logo">
+
+                        <i class="bi bi-stars"></i>
+
+                    </span>
+
+                    ProfilePilot <span>AI</span>
+
+                </a>
+
+
+                <p>
+                    AI-powered LinkedIn profile intelligence.
+                </p>
+
+            </div>
+
+
+            <div class="footer-right">
+                © 2026 ProfilePilot AI
+            </div>
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    const form =
+        document.getElementById("uploadForm");
+
+    const input =
+        document.getElementById("fileInput");
+
+    const fileName =
+        document.getElementById("fileName");
+
+    const fileSize =
+        document.getElementById("fileSize");
+
+    const fileBox =
+        document.getElementById("fileBox");
+
+    const removeBtn =
+        document.getElementById("removeBtn");
+
+    const progress =
+        document.getElementById("progressBox");
+
+    const analyzeButton =
+        document.getElementById("analyzeButton");
+
+    const dropArea =
+        document.getElementById("dropArea");
+
+    const errorBox =
+        document.getElementById("errorBox");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+
+    /* =============================================
+       FILE SELECT
+    ============================================= */
+
+    input.addEventListener("change", () => {
+
+        if (input.files.length > 0) {
+
+            showSelectedFile(input.files[0]);
+
+        }
+
+    });
+
+
+
+    /* =============================================
+       DRAG & DROP
+    ============================================= */
+
+    ["dragenter", "dragover"].forEach(eventName => {
+
+        dropArea.addEventListener(eventName, (event) => {
+
+            event.preventDefault();
+
+            dropArea.classList.add("drag-active");
 
         });
 
-        removeBtn.addEventListener("click", () => {
+    });
 
-            input.value = "";
-            fileBox.classList.add("d-none");
+
+    ["dragleave", "drop"].forEach(eventName => {
+
+        dropArea.addEventListener(eventName, (event) => {
+
+            event.preventDefault();
+
+            dropArea.classList.remove("drag-active");
 
         });
 
-        form.addEventListener("submit", async (e) => {
+    });
 
-            e.preventDefault();
 
-            if (input.files.length === 0) {
-                alert("Please select a LinkedIn PDF");
-                return;
-            }
+    dropArea.addEventListener("drop", (event) => {
 
-            progress.classList.remove("d-none");
+        const files =
+            event.dataTransfer.files;
 
-            const formData = new FormData();
-            formData.append("file", input.files[0]);
+        if (!files.length) {
+            return;
+        }
 
-            try {
 
-                console.log("Uploading...");
+        const file =
+            files[0];
 
-                const response = await fetch("http://127.0.0.1:8000/analyze", {
-                    method: "POST",
-                    body: formData
-                });
 
-                console.log("Status:", response.status);
+        if (
+            file.type !== "application/pdf" &&
+            !file.name.toLowerCase().endsWith(".pdf")
+        ) {
 
-                if (!response.ok) {
-                    throw new Error(`Server Error: ${response.status}`);
+            showError(
+                "Please upload a PDF file only."
+            );
+
+            return;
+        }
+
+
+        const dataTransfer =
+            new DataTransfer();
+
+        dataTransfer.items.add(file);
+
+        input.files =
+            dataTransfer.files;
+
+
+        showSelectedFile(file);
+
+    });
+
+
+
+    /* =============================================
+       SHOW FILE
+    ============================================= */
+
+    function showSelectedFile(file) {
+
+        hideError();
+
+        fileName.textContent =
+            file.name;
+
+        fileSize.textContent =
+            formatFileSize(file.size) +
+            " • Ready for analysis";
+
+        fileBox.classList.remove("d-none");
+
+    }
+
+
+
+    /* =============================================
+       REMOVE FILE
+    ============================================= */
+
+    removeBtn.addEventListener("click", () => {
+
+        input.value = "";
+
+        fileBox.classList.add("d-none");
+
+        progress.classList.add("d-none");
+
+        hideError();
+
+    });
+
+
+
+    /* =============================================
+       SUBMIT
+    ============================================= */
+
+    form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+
+        if (input.files.length === 0) {
+
+            showError(
+                "Please select your LinkedIn Profile PDF."
+            );
+
+            return;
+
+        }
+
+
+        const selectedFile =
+            input.files[0];
+
+
+        if (
+            selectedFile.type !== "application/pdf" &&
+            !selectedFile.name
+                .toLowerCase()
+                .endsWith(".pdf")
+        ) {
+
+            showError(
+                "Only PDF files are supported."
+            );
+
+            return;
+
+        }
+
+
+        hideError();
+
+        progress.classList.remove("d-none");
+
+        analyzeButton.disabled = true;
+
+        analyzeButton.innerHTML = `
+
+            <span
+                class="spinner-border spinner-border-sm me-2"
+                aria-hidden="true">
+            </span>
+
+            Analyzing Profile...
+
+        `;
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "file",
+            selectedFile
+        );
+
+
+        try {
+
+            console.log(
+                "Uploading LinkedIn profile..."
+            );
+
+
+            const response =
+                await fetch(
+                    "http://127.0.0.1:8000/analyze",
+                    {
+
+                        method: "POST",
+
+                        body: formData
+
+                    }
+                );
+
+
+            console.log(
+                "Status:",
+                response.status
+            );
+
+
+            if (!response.ok) {
+
+                let message =
+                    `Server Error: ${response.status}`;
+
+
+                try {
+
+                    const errorData =
+                        await response.json();
+
+
+                    if (errorData.detail) {
+
+                        message =
+                            typeof errorData.detail === "string"
+                                ? errorData.detail
+                                : JSON.stringify(
+                                    errorData.detail
+                                );
+
+                    }
+
+                } catch (_) {
+
+                    // Keep default error message.
+
                 }
 
-                const data = await response.json();
 
-                console.log("Backend Response:", data);
-
-                localStorage.setItem("analysisReport", data.report);
-
-                window.location.href = "result.html";
-
-            } catch (error) {
-
-                progress.classList.add("d-none");
-
-                console.error("Full Error:", error);
-
-                alert(error.message);
+                throw new Error(message);
 
             }
 
-        });
 
-    </script>
+            const data =
+                await response.json();
+
+
+            console.log(
+                "Backend Response:",
+                data
+            );
+
+
+            if (
+                data.status === "success" &&
+                data.analysis
+            ) {
+
+                /*
+                    IMPORTANT:
+                    Keep this key identical to result.html.
+                */
+
+                localStorage.setItem(
+                    "profileAnalysis",
+                    JSON.stringify(
+                        data.analysis
+                    )
+                );
+
+
+                /*
+                    Remove old report data from
+                    the previous version.
+                */
+
+                localStorage.removeItem(
+                    "analysisReport"
+                );
+
+
+                /*
+                    Automatically open results.
+                */
+
+                window.location.href =
+                    "result.html";
+
+            } else {
+
+                throw new Error(
+                    "Analysis data was not returned by the server."
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Full Error:",
+                error
+            );
+
+
+            progress.classList.add("d-none");
+
+            analyzeButton.disabled = false;
+
+            analyzeButton.innerHTML = `
+
+                <i class="bi bi-stars me-2"></i>
+
+                Analyze My Profile
+
+            `;
+
+
+            showError(
+                error.message ||
+                "Something went wrong while analyzing your profile."
+            );
+
+        }
+
+    });
+
+
+
+    /* =============================================
+       ERROR HELPERS
+    ============================================= */
+
+    function showError(message) {
+
+        errorMessage.textContent =
+            message;
+
+        errorBox.classList.remove(
+            "d-none"
+        );
+
+    }
+
+
+    function hideError() {
+
+        errorBox.classList.add(
+            "d-none"
+        );
+
+        errorMessage.textContent = "";
+
+    }
+
+
+
+    /* =============================================
+       FILE SIZE
+    ============================================= */
+
+    function formatFileSize(bytes) {
+
+        if (bytes === 0) {
+            return "0 KB";
+        }
+
+
+        const kb =
+            bytes / 1024;
+
+
+        if (kb < 1024) {
+
+            return (
+                kb.toFixed(1) +
+                " KB"
+            );
+
+        }
+
+
+        return (
+            kb / 1024
+        ).toFixed(2) + " MB";
+
+    }
+
+</script>
+
 
 </body>
-
 </html>
