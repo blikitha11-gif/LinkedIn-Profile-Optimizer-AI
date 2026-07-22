@@ -4,61 +4,2557 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Analysis Report | ProfilePilot AI</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <title>LinkedIn Profile Analysis | ProfilePilot AI</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/result.css">
 </head>
 
-<body class="bg-light">
+<body>
 
-    <nav class="navbar navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary fs-3" href="index.html">ProfilePilot AI</a>
-            <a href="upload.html" class="btn btn-outline-primary">Analyze Another Profile</a>
-        </div>
-    </nav>
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-    <div class="container py-5">
+<nav class="navbar navbar-expand-lg bg-white">
 
-        <h1 class="text-center mb-4">
-            AI LinkedIn Analysis Report
-        </h1>
+    <div class="container">
 
-        <div class="card shadow p-4">
+        <a class="navbar-brand" href="index.html">
 
-            <pre id="report" style="white-space:pre-wrap;
-    font-family:inherit;
-    font-size:16px;"></pre>
+            <span class="logo-icon">
+                <i class="bi bi-stars"></i>
+            </span>
 
-        </div>
+            ProfilePilot <span>AI</span>
 
-        <div class="text-center mt-4">
+        </a>
 
-            <a href="upload.html" class="btn btn-primary">
-                Analyze Another Profile
-            </a>
+        <a href="upload.html" class="btn btn-outline-primary">
+
+            <i class="bi bi-arrow-clockwise me-2"></i>
+
+            Analyze Another Profile
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="result-page">
+
+    <div class="container report-container">
+
+        <!-- PAGE HEADER -->
+
+        <section class="report-header">
+
+            <span class="ai-badge">
+
+                <i class="bi bi-stars"></i>
+
+                AI PROFILE INTELLIGENCE
+
+            </span>
+
+            <h1>
+                LinkedIn Profile Analysis
+            </h1>
+
+            <p>
+                See how your current LinkedIn profile performs and
+                what you can improve to strengthen recruiter visibility.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================================
+             SCORE SECTION
+        ====================================================== -->
+
+        <section class="score-section">
+
+            <div class="row g-4">
+
+                <!-- OVERALL SCORE -->
+
+                <div class="col-lg-4">
+
+                    <div class="dashboard-card score-card">
+
+                        <div class="card-top">
+
+                            <div>
+
+                                <span class="small-label">
+                                    PROFILE PERFORMANCE
+                                </span>
+
+                                <h2>
+                                    Overall Score
+                                </h2>
+
+                            </div>
+
+                            <span class="card-icon blue">
+                                <i class="bi bi-speedometer2"></i>
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="score-circle"
+                            id="scoreCircle"
+                        >
+
+                            <div class="score-inner">
+
+                                <div>
+
+                                    <span id="overallScore">
+                                        --
+                                    </span>
+
+                                    <small>
+                                        /100
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="score-status"
+                            id="scoreStatus"
+                        >
+                            Analyzing profile score...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VERTICAL CHART -->
+
+                <div class="col-lg-8">
+
+                    <div class="dashboard-card chart-card">
+
+                        <div class="card-top">
+
+                            <div>
+
+                                <span class="small-label">
+                                    SECTION ANALYSIS
+                                </span>
+
+                                <h2>
+                                    Profile Section Scores
+                                </h2>
+
+                            </div>
+
+                            <span class="card-icon purple">
+                                <i class="bi bi-bar-chart-line"></i>
+                            </span>
+
+                        </div>
+
+
+                        <div class="chart-wrapper">
+
+                            <canvas id="sectionChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             OVERALL SUMMARY
+        ====================================================== -->
+
+        <section class="summary-section">
+
+            <div class="dashboard-card summary-card">
+
+                <div class="section-heading-row">
+
+                    <span class="section-icon blue">
+                        <i class="bi bi-stars"></i>
+                    </span>
+
+                    <div>
+
+                        <span class="small-label">
+                            AI ASSESSMENT
+                        </span>
+
+                        <h2>
+                            Overall Profile Summary
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <p id="overallSummary" class="summary-text">
+                    Loading profile summary...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STRENGTHS + WEAKNESSES
+        ====================================================== -->
+
+        <section class="insights-section">
+
+            <div class="row g-4">
+
+                <!-- STRENGTHS -->
+
+                <div class="col-lg-6">
+
+                    <div class="dashboard-card insight-card strength-card">
+
+                        <span class="small-label success-label">
+                            WHAT'S WORKING
+                        </span>
+
+                        <h2>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Profile Strengths
+
+                        </h2>
+
+                        <div id="strengths">
+
+                            <p class="loading-text">
+                                Loading strengths...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WEAKNESSES -->
+
+                <div class="col-lg-6">
+
+                    <div class="dashboard-card insight-card weakness-card">
+
+                        <span class="small-label warning-label">
+                            OPPORTUNITIES
+                        </span>
+
+                        <h2>
+
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+
+                            Areas to Improve
+
+                        </h2>
+
+                        <div id="weaknesses">
+
+                            <p class="loading-text">
+                                Loading improvement areas...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROFILE SECTIONS
+        ====================================================== -->
+
+        <section class="profile-sections">
+            
+            <!-- HEADLINE -->
+
+            <div
+                class="comparison-card"
+                id="headlineSection"
+            >
+
+                <div class="comparison-header">
+
+                    <div class="comparison-title">
+
+                        <span class="section-icon blue">
+                            <i class="bi bi-person-badge"></i>
+                        </span>
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE SECTION
+                            </span>
+
+                            <h2>
+                                Headline
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="change-badge"
+                        id="headlineBadge"
+                    >
+                        Analyzing
+                    </span>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="content-panel current-panel">
+
+                        <span class="panel-label current-label">
+                            CURRENT PROFILE
+                        </span>
+
+                        <h3>
+                            What you have now
+                        </h3>
+
+                        <div
+                            class="profile-content"
+                            id="headlineCurrent"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <div class="comparison-arrow">
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+
+                    <div class="content-panel recommended-panel">
+
+                        <div class="recommended-heading">
+
+                            <div>
+
+                                <span class="panel-label recommended-label">
+                                    AI RECOMMENDED
+                                </span>
+
+                                <h3>
+                                    Suggested improvement
+                                </h3>
+
+                            </div>
+
+                            <button
+                                class="copy-btn"
+                                onclick="copyContent('headlineRecommended', this)"
+                            >
+
+                                <i class="bi bi-copy"></i>
+
+                                Copy
+
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="profile-content"
+                            id="headlineRecommended"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="reason-box"
+                    id="headlineReasonBox"
+                >
+
+                    <span class="reason-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Why this change?
+                        </strong>
+
+                        <p id="headlineReason">
+                            Loading recommendation reason...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ABOUT -->
+
+            <div
+                class="comparison-card"
+                id="aboutSection"
+            >
+
+                <div class="comparison-header">
+
+                    <div class="comparison-title">
+
+                        <span class="section-icon purple">
+                            <i class="bi bi-person-lines-fill"></i>
+                        </span>
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE SECTION
+                            </span>
+
+                            <h2>
+                                About
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="change-badge"
+                        id="aboutBadge"
+                    >
+                        Analyzing
+                    </span>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="content-panel current-panel">
+
+                        <span class="panel-label current-label">
+                            CURRENT PROFILE
+                        </span>
+
+                        <h3>
+                            What you have now
+                        </h3>
+
+                        <div
+                            class="profile-content long-content"
+                            id="aboutCurrent"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <div class="comparison-arrow">
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+
+                    <div class="content-panel recommended-panel">
+
+                        <div class="recommended-heading">
+
+                            <div>
+
+                                <span class="panel-label recommended-label">
+                                    AI RECOMMENDED
+                                </span>
+
+                                <h3>
+                                    Suggested improvement
+                                </h3>
+
+                            </div>
+
+                            <button
+                                class="copy-btn"
+                                onclick="copyContent('aboutRecommended', this)"
+                            >
+
+                                <i class="bi bi-copy"></i>
+
+                                Copy
+
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="profile-content long-content"
+                            id="aboutRecommended"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason-box">
+
+                    <span class="reason-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Why this change?
+                        </strong>
+
+                        <p id="aboutReason">
+                            Loading recommendation reason...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div
+                class="comparison-card"
+                id="experienceSection"
+            >
+
+                <div class="comparison-header">
+
+                    <div class="comparison-title">
+
+                        <span class="section-icon cyan">
+                            <i class="bi bi-briefcase"></i>
+                        </span>
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE SECTION
+                            </span>
+
+                            <h2>
+                                Experience
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="change-badge"
+                        id="experienceBadge"
+                    >
+                        Analyzing
+                    </span>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="content-panel current-panel">
+
+                        <span class="panel-label current-label">
+                            CURRENT PROFILE
+                        </span>
+
+                        <h3>
+                            What you have now
+                        </h3>
+
+                        <div
+                            class="profile-content long-content"
+                            id="experienceCurrent"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <div class="comparison-arrow">
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+
+                    <div class="content-panel recommended-panel">
+
+                        <div class="recommended-heading">
+
+                            <div>
+
+                                <span class="panel-label recommended-label">
+                                    AI RECOMMENDED
+                                </span>
+
+                                <h3>
+                                    Suggested improvement
+                                </h3>
+
+                            </div>
+
+                            <button
+                                class="copy-btn"
+                                onclick="copyContent('experienceRecommended', this)"
+                            >
+
+                                <i class="bi bi-copy"></i>
+
+                                Copy
+
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="profile-content long-content"
+                            id="experienceRecommended"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason-box">
+
+                    <span class="reason-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Why this change?
+                        </strong>
+
+                        <p id="experienceReason">
+                            Loading recommendation reason...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div
+                class="comparison-card"
+                id="skillsSection"
+            >
+
+                <div class="comparison-header">
+
+                    <div class="comparison-title">
+
+                        <span class="section-icon green">
+                            <i class="bi bi-tools"></i>
+                        </span>
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE SECTION
+                            </span>
+
+                            <h2>
+                                Skills
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="change-badge"
+                        id="skillsBadge"
+                    >
+                        Analyzing
+                    </span>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="content-panel current-panel">
+
+                        <span class="panel-label current-label">
+                            CURRENT SKILLS
+                        </span>
+
+                        <h3>
+                            Skills detected
+                        </h3>
+
+                        <div
+                            class="skills-container"
+                            id="skillsCurrent"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <div class="comparison-arrow">
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+
+                    <div class="content-panel recommended-panel">
+
+                        <div class="recommended-heading">
+
+                            <div>
+
+                                <span class="panel-label recommended-label">
+                                    AI RECOMMENDED
+                                </span>
+
+                                <h3>
+                                    Recommended skills
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="skills-container"
+                            id="skillsRecommended"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason-box">
+
+                    <span class="reason-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Why this change?
+                        </strong>
+
+                        <p id="skillsReason">
+                            Loading recommendation reason...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div
+                class="comparison-card"
+                id="educationSection"
+            >
+
+                <div class="comparison-header">
+
+                    <div class="comparison-title">
+
+                        <span class="section-icon orange">
+                            <i class="bi bi-mortarboard"></i>
+                        </span>
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE SECTION
+                            </span>
+
+                            <h2>
+                                Education
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="change-badge"
+                        id="educationBadge"
+                    >
+                        Analyzing
+                    </span>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="content-panel current-panel">
+
+                        <span class="panel-label current-label">
+                            CURRENT PROFILE
+                        </span>
+
+                        <h3>
+                            What you have now
+                        </h3>
+
+                        <div
+                            class="profile-content"
+                            id="educationCurrent"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <div class="comparison-arrow">
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+
+                    <div class="content-panel recommended-panel">
+
+                        <div class="recommended-heading">
+
+                            <div>
+
+                                <span class="panel-label recommended-label">
+                                    AI RECOMMENDED
+                                </span>
+
+                                <h3>
+                                    Suggested improvement
+                                </h3>
+
+                            </div>
+
+                            <button
+                                class="copy-btn"
+                                onclick="copyContent('educationRecommended', this)"
+                            >
+
+                                <i class="bi bi-copy"></i>
+
+                                Copy
+
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="profile-content"
+                            id="educationRecommended"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason-box">
+
+                    <span class="reason-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Why this change?
+                        </strong>
+
+                        <p id="educationReason">
+                            Loading recommendation reason...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <div
+                class="comparison-card"
+                id="projectsSection"
+            >
+
+                <div class="comparison-header">
+
+                    <div class="comparison-title">
+
+                        <span class="section-icon violet">
+                            <i class="bi bi-folder2-open"></i>
+                        </span>
+
+                        <div>
+
+                            <span class="small-label">
+                                PROFILE SECTION
+                            </span>
+
+                            <h2>
+                                Projects
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="change-badge"
+                        id="projectsBadge"
+                    >
+                        Analyzing
+                    </span>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="content-panel current-panel">
+
+                        <span class="panel-label current-label">
+                            CURRENT PROFILE
+                        </span>
+
+                        <h3>
+                            What you have now
+                        </h3>
+
+                        <div
+                            class="profile-content long-content"
+                            id="projectsCurrent"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+
+                    <div class="comparison-arrow">
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+
+                    <div class="content-panel recommended-panel">
+
+                        <div class="recommended-heading">
+
+                            <div>
+
+                                <span class="panel-label recommended-label">
+                                    AI RECOMMENDED
+                                </span>
+
+                                <h3>
+                                    Suggested improvement
+                                </h3>
+
+                            </div>
+
+                            <button
+                                class="copy-btn"
+                                onclick="copyContent('projectsRecommended', this)"
+                            >
+
+                                <i class="bi bi-copy"></i>
+
+                                Copy
+
+                            </button>
+
+                        </div>
+
+                        <div
+                            class="profile-content long-content"
+                            id="projectsRecommended"
+                        >
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason-box">
+
+                    <span class="reason-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Why this change?
+                        </strong>
+
+                        <p id="projectsReason">
+                            Loading recommendation reason...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRIORITY IMPROVEMENTS
+        ====================================================== -->
+
+        <section class="priority-section">
+
+            <div class="dashboard-card">
+
+                <div class="section-heading-row">
+
+                    <span class="section-icon orange">
+                        <i class="bi bi-lightning-charge"></i>
+                    </span>
+
+                    <div>
+
+                        <span class="small-label">
+                            ACTION PLAN
+                        </span>
+
+                        <h2>
+                            Priority Improvements
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="priority-list"
+                    id="priorityImprovements"
+                >
+
+                    <p class="loading-text">
+                        Loading priority improvements...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             JOB RECOMMENDATIONS
+        ====================================================== -->
+
+        <section class="jobs-section">
+
+            <div class="dashboard-card jobs-card">
+
+                <div class="jobs-heading">
+
+                    <span class="section-icon purple">
+                        <i class="bi bi-briefcase"></i>
+                    </span>
+
+                    <div>
+
+                        <span class="small-label">
+                            CAREER MATCHES
+                        </span>
+
+                        <h2>
+                            Recommended Job Roles
+                        </h2>
+
+                        <p>
+                            Roles that align with your current
+                            skills, education and profile direction.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="job-container"
+                    id="recommendedJobs"
+                >
+
+                    <p class="loading-text">
+                        Loading recommended roles...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL CTA
+        ====================================================== -->
+
+        <section class="final-cta">
+
+            <div class="final-cta-card">
+
+                <span class="cta-icon">
+                    <i class="bi bi-stars"></i>
+                </span>
+
+                <span class="small-label">
+                    PROFILEPILOT AI
+                </span>
+
+                <h2>
+                    Ready to Improve Your LinkedIn Profile?
+                </h2>
+
+                <p>
+                    Apply the recommendations above and analyze
+                    your profile again to track your improvement.
+                </p>
+
+                <a
+                    href="upload.html"
+                    class="btn btn-primary btn-lg"
+                >
+
+                    <i class="bi bi-arrow-clockwise me-2"></i>
+
+                    Analyze Another Profile
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div>
+
+                <a
+                    href="index.html"
+                    class="footer-brand"
+                >
+
+                    <span class="footer-logo">
+                        <i class="bi bi-stars"></i>
+                    </span>
+
+                    ProfilePilot <span>AI</span>
+
+                </a>
+
+                <p>
+                    AI-powered LinkedIn profile intelligence.
+                </p>
+
+            </div>
+
+            <div class="footer-right">
+                © 2026 ProfilePilot AI
+            </div>
 
         </div>
 
     </div>
 
-    <script>
+</footer>
 
-        const report = localStorage.getItem("analysisReport");
 
-        if (report) {
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
-            document.getElementById("report").textContent = report;
+<script>
 
-        } else {
+/* =========================================================
+   GET ANALYSIS
+========================================================= */
 
-            document.getElementById("report").textContent =
-                "No report found.";
+const savedAnalysis =
+    localStorage.getItem("profileAnalysis");
+
+let analysis = null;
+
+
+if (savedAnalysis) {
+
+    try {
+
+        analysis =
+            JSON.parse(savedAnalysis);
+
+        console.log(
+            "ProfilePilot Analysis:",
+            analysis
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Could not parse analysis:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   NO ANALYSIS
+========================================================= */
+
+if (!analysis) {
+
+    document.querySelector(
+        ".report-container"
+    ).innerHTML = `
+
+        <div class="no-report">
+
+            <div class="no-report-icon">
+                <i class="bi bi-exclamation-circle"></i>
+            </div>
+
+            <h2>
+                No Analysis Report Found
+            </h2>
+
+            <p>
+                Please upload your LinkedIn profile
+                and run the analysis first.
+            </p>
+
+            <a
+                href="upload.html"
+                class="btn btn-primary"
+            >
+                Analyze Profile
+            </a>
+
+        </div>
+    `;
+
+} else {
+
+    initializeReport(analysis);
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initializeReport(data) {
+
+    renderOverallScore(
+        data.overall_score
+    );
+
+    renderOverallSummary(
+        data.overall_summary
+    );
+
+    createSectionChart(
+        data.section_scores || {}
+    );
+
+    renderSimpleList(
+        "strengths",
+        data.strengths,
+        "success"
+    );
+
+    renderSimpleList(
+        "weaknesses",
+        data.weaknesses,
+        "warning"
+    );
+
+
+    renderComparisonSection(
+        "headline",
+        data.headline
+    );
+
+    renderComparisonSection(
+        "about",
+        data.about
+    );
+
+    renderComparisonSection(
+        "experience",
+        data.experience
+    );
+
+    renderSkillsSection(
+        data.skills
+    );
+
+    renderComparisonSection(
+        "education",
+        data.education
+    );
+
+    renderComparisonSection(
+        "projects",
+        data.projects
+    );
+
+
+    renderPriorityImprovements(
+        data.priority_improvements
+    );
+
+    renderJobs(
+        data.recommended_jobs
+    );
+
+}
+
+
+/* =========================================================
+   OVERALL SCORE
+========================================================= */
+
+function renderOverallScore(value) {
+
+    const score =
+        clampScore(value);
+
+    const scoreElement =
+        document.getElementById(
+            "overallScore"
+        );
+
+    const circle =
+        document.getElementById(
+            "scoreCircle"
+        );
+
+    const status =
+        document.getElementById(
+            "scoreStatus"
+        );
+
+
+    scoreElement.textContent =
+        score;
+
+
+    const degrees =
+        score * 3.6;
+
+
+    circle.style.background = `
+
+        conic-gradient(
+            #2563EB 0deg ${degrees}deg,
+            #E8EEF8 ${degrees}deg 360deg
+        )
+
+    `;
+
+
+    if (score >= 85) {
+
+        status.innerHTML = `
+            <span class="status-dot excellent"></span>
+            Excellent profile performance
+        `;
+
+    }
+
+    else if (score >= 70) {
+
+        status.innerHTML = `
+            <span class="status-dot good"></span>
+            Strong profile with room to optimize
+        `;
+
+    }
+
+    else if (score >= 50) {
+
+        status.innerHTML = `
+            <span class="status-dot average"></span>
+            Good foundation — improvements recommended
+        `;
+
+    }
+
+    else {
+
+        status.innerHTML = `
+            <span class="status-dot weak"></span>
+            Important improvements recommended
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   OVERALL SUMMARY
+========================================================= */
+
+function renderOverallSummary(summary) {
+
+    const element =
+        document.getElementById(
+            "overallSummary"
+        );
+
+
+    element.textContent =
+        normalizeText(summary) ||
+        "No overall summary was returned.";
+
+}
+
+
+/* =========================================================
+   VERTICAL SECTION CHART
+========================================================= */
+
+function createSectionChart(scores) {
+
+    const labels = [
+        "Headline",
+        "About",
+        "Experience",
+        "Skills",
+        "Education",
+        "Projects"
+    ];
+
+
+    const values = [
+
+        clampScore(scores.headline),
+
+        clampScore(scores.about),
+
+        clampScore(scores.experience),
+
+        clampScore(scores.skills),
+
+        clampScore(scores.education),
+
+        clampScore(scores.projects)
+
+    ];
+
+
+    const canvas =
+        document.getElementById(
+            "sectionChart"
+        );
+
+
+    if (!canvas) {
+        return;
+    }
+
+
+    new Chart(canvas, {
+
+        type: "bar",
+
+        data: {
+
+            labels: labels,
+
+            datasets: [{
+
+                data: values,
+
+                backgroundColor: [
+                    "#2563EB",
+                    "#6366F1",
+                    "#8B5CF6",
+                    "#0EA5E9",
+                    "#14B8A6",
+                    "#10B981"
+                ],
+
+                borderRadius: 8,
+
+                borderSkipped: false,
+
+                maxBarThickness: 55
+
+            }]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+
+            plugins: {
+
+                legend: {
+                    display: false
+                },
+
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label: function(context) {
+
+                            return (
+                                context.raw +
+                                "/100"
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            },
+
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    max: 100,
+
+                    ticks: {
+
+                        stepSize: 20,
+
+                        color: "#64748B",
+
+                        font: {
+                            size: 11
+                        }
+
+                    },
+
+                    grid: {
+
+                        color:
+                            "#EEF2F7",
+
+                        drawBorder:
+                            false
+
+                    }
+
+                },
+
+
+                x: {
+
+                    grid: {
+                        display: false
+                    },
+
+                    ticks: {
+
+                        color:
+                            "#334155",
+
+                        font: {
+                            size: 11,
+                            weight: 600
+                        }
+
+                    }
+
+                }
+
+            }
 
         }
 
-    </script>
-</body>
+    });
 
+}
+
+
+/* =========================================================
+   STRENGTHS / WEAKNESSES
+========================================================= */
+
+function renderSimpleList(
+    elementId,
+    data,
+    type
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    if (!element) {
+        return;
+    }
+
+
+    const items =
+        normalizeArray(data);
+
+
+    if (items.length === 0) {
+
+        element.innerHTML = `
+
+            <p class="empty-message">
+                No specific information
+                was returned for this section.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    const icon =
+        type === "success"
+            ? "bi-check2"
+            : "bi-arrow-up-right";
+
+
+    element.innerHTML = `
+
+        <ul class="insight-list">
+
+            ${items.map(item => `
+
+                <li>
+
+                    <span
+                        class="insight-list-icon ${type}"
+                    >
+
+                        <i class="bi ${icon}"></i>
+
+                    </span>
+
+                    <span>
+                        ${escapeHTML(item)}
+                    </span>
+
+                </li>
+
+            `).join("")}
+
+        </ul>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CURRENT VS RECOMMENDED
+========================================================= */
+
+function renderComparisonSection(
+    sectionName,
+    data
+) {
+
+    const current =
+        document.getElementById(
+            `${sectionName}Current`
+        );
+
+    const recommended =
+        document.getElementById(
+            `${sectionName}Recommended`
+        );
+
+    const reason =
+        document.getElementById(
+            `${sectionName}Reason`
+        );
+
+    const badge =
+        document.getElementById(
+            `${sectionName}Badge`
+        );
+
+
+    if (
+        !current ||
+        !recommended ||
+        !reason
+    ) {
+        return;
+    }
+
+
+    if (
+        !data ||
+        typeof data !== "object"
+    ) {
+
+        current.textContent =
+            "No content detected.";
+
+        recommended.textContent =
+            "No recommendation returned.";
+
+        reason.textContent =
+            "No recommendation reason returned.";
+
+        setChangeBadge(
+            badge,
+            false,
+            true
+        );
+
+        return;
+
+    }
+
+
+    renderFlexibleValue(
+        current,
+        data.current,
+        "No content detected in the uploaded profile."
+    );
+
+
+    renderFlexibleValue(
+        recommended,
+        data.recommended,
+        "No specific change was recommended."
+    );
+
+
+    reason.textContent =
+        normalizeText(data.reason) ||
+        "No additional explanation was returned.";
+
+
+    setChangeBadge(
+        badge,
+        data.needs_change
+    );
+
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+function renderSkillsSection(data) {
+
+    const current =
+        document.getElementById(
+            "skillsCurrent"
+        );
+
+    const recommended =
+        document.getElementById(
+            "skillsRecommended"
+        );
+
+    const reason =
+        document.getElementById(
+            "skillsReason"
+        );
+
+    const badge =
+        document.getElementById(
+            "skillsBadge"
+        );
+
+
+    if (
+        !data ||
+        typeof data !== "object"
+    ) {
+
+        current.innerHTML =
+            `<span class="empty-message">
+                No skills detected.
+            </span>`;
+
+        recommended.innerHTML =
+            `<span class="empty-message">
+                No skill recommendations returned.
+            </span>`;
+
+        reason.textContent =
+            "No recommendation reason returned.";
+
+        setChangeBadge(
+            badge,
+            false,
+            true
+        );
+
+        return;
+
+    }
+
+
+    renderSkillBadges(
+        current,
+        data.current,
+        false
+    );
+
+
+    renderSkillBadges(
+        recommended,
+        data.recommended,
+        true
+    );
+
+
+    reason.textContent =
+        normalizeText(data.reason) ||
+        "No additional explanation was returned.";
+
+
+    setChangeBadge(
+        badge,
+        data.needs_change
+    );
+
+}
+
+
+/* =========================================================
+   SKILL BADGES
+========================================================= */
+
+function renderSkillBadges(
+    container,
+    value,
+    recommended
+) {
+
+    const skills =
+        normalizeArray(value);
+
+
+    if (skills.length === 0) {
+
+        container.innerHTML = `
+
+            <span class="empty-message">
+                No skills returned.
+            </span>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        skills.map(skill => `
+
+            <span
+                class="skill-chip ${
+                    recommended
+                        ? "recommended-skill"
+                        : ""
+                }"
+            >
+
+                ${
+                    recommended
+                        ? '<i class="bi bi-plus"></i>'
+                        : '<i class="bi bi-check2"></i>'
+                }
+
+                ${escapeHTML(skill)}
+
+            </span>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   CHANGE BADGE
+========================================================= */
+
+function setChangeBadge(
+    badge,
+    needsChange,
+    unavailable = false
+) {
+
+    if (!badge) {
+        return;
+    }
+
+
+    badge.classList.remove(
+        "needs-change",
+        "looks-good",
+        "unavailable"
+    );
+
+
+    if (unavailable) {
+
+        badge.textContent =
+            "Unavailable";
+
+        badge.classList.add(
+            "unavailable"
+        );
+
+        return;
+
+    }
+
+
+    if (needsChange === true) {
+
+        badge.innerHTML = `
+            <i class="bi bi-lightning-charge-fill"></i>
+            Improvement Recommended
+        `;
+
+        badge.classList.add(
+            "needs-change"
+        );
+
+    }
+
+    else {
+
+        badge.innerHTML = `
+            <i class="bi bi-check-circle-fill"></i>
+            Looks Good
+        `;
+
+        badge.classList.add(
+            "looks-good"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PRIORITY IMPROVEMENTS
+========================================================= */
+
+function renderPriorityImprovements(data) {
+
+    const container =
+        document.getElementById(
+            "priorityImprovements"
+        );
+
+
+    const items =
+        normalizeArray(data);
+
+
+    if (items.length === 0) {
+
+        container.innerHTML = `
+
+            <p class="empty-message">
+                No priority improvements were returned.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        items.map((item, index) => `
+
+            <div class="priority-item">
+
+                <span class="priority-number">
+                    ${index + 1}
+                </span>
+
+                <div>
+
+                    <span class="priority-label">
+                        PRIORITY ${index + 1}
+                    </span>
+
+                    <p>
+                        ${escapeHTML(item)}
+                    </p>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   JOBS
+========================================================= */
+
+function renderJobs(data) {
+
+    const container =
+        document.getElementById(
+            "recommendedJobs"
+        );
+
+
+    const jobs =
+        normalizeArray(data);
+
+
+    if (jobs.length === 0) {
+
+        container.innerHTML = `
+
+            <p class="empty-message">
+                No job recommendations were returned.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        jobs.map(job => `
+
+            <div class="job-chip">
+
+                <span class="job-icon">
+                    <i class="bi bi-briefcase"></i>
+                </span>
+
+                <span>
+                    ${escapeHTML(job)}
+                </span>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   FLEXIBLE CONTENT
+========================================================= */
+
+function renderFlexibleValue(
+    element,
+    value,
+    fallback
+) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        element.innerHTML = `
+            <span class="empty-message">
+                ${escapeHTML(fallback)}
+            </span>
+        `;
+
+        return;
+
+    }
+
+
+    if (Array.isArray(value)) {
+
+        const items =
+            normalizeArray(value);
+
+
+        element.innerHTML = `
+
+            <ul class="content-list">
+
+                ${items.map(item => `
+
+                    <li>
+                        ${escapeHTML(item)}
+                    </li>
+
+                `).join("")}
+
+            </ul>
+
+        `;
+
+        return;
+
+    }
+
+
+    if (typeof value === "object") {
+
+        const values =
+            Object.values(value)
+                .flat()
+                .filter(Boolean)
+                .map(String);
+
+
+        if (values.length > 0) {
+
+            element.innerHTML = `
+
+                <ul class="content-list">
+
+                    ${values.map(item => `
+
+                        <li>
+                            ${escapeHTML(item)}
+                        </li>
+
+                    `).join("")}
+
+                </ul>
+
+            `;
+
+        }
+
+        else {
+
+            element.innerHTML = `
+                <span class="empty-message">
+                    ${escapeHTML(fallback)}
+                </span>
+            `;
+
+        }
+
+        return;
+
+    }
+
+
+    element.textContent =
+        String(value);
+
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+function copyContent(
+    elementId,
+    button
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    if (!element) {
+        return;
+    }
+
+
+    const text =
+        element.innerText.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    navigator.clipboard
+        .writeText(text)
+        .then(() => {
+
+            const original =
+                button.innerHTML;
+
+
+            button.innerHTML = `
+                <i class="bi bi-check2"></i>
+                Copied
+            `;
+
+
+            button.classList.add(
+                "copied"
+            );
+
+
+            setTimeout(() => {
+
+                button.innerHTML =
+                    original;
+
+                button.classList.remove(
+                    "copied"
+                );
+
+            }, 1500);
+
+        });
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function clampScore(value) {
+
+    const number =
+        Number(value);
+
+
+    if (!Number.isFinite(number)) {
+        return 0;
+    }
+
+
+    return Math.max(
+        0,
+        Math.min(
+            100,
+            Math.round(number)
+        )
+    );
+
+}
+
+
+function normalizeText(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "";
+    }
+
+
+    if (typeof value === "string") {
+        return value.trim();
+    }
+
+
+    if (Array.isArray(value)) {
+
+        return value
+            .filter(Boolean)
+            .map(String)
+            .join(", ");
+
+    }
+
+
+    if (typeof value === "object") {
+
+        return Object.values(value)
+            .flat()
+            .filter(Boolean)
+            .map(String)
+            .join(", ");
+
+    }
+
+
+    return String(value);
+
+}
+
+
+function normalizeArray(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return [];
+    }
+
+
+    if (Array.isArray(value)) {
+
+        return value
+            .flat(Infinity)
+            .filter(Boolean)
+            .map(item =>
+                String(item).trim()
+            )
+            .filter(Boolean);
+
+    }
+
+
+    if (typeof value === "string") {
+
+        const text =
+            value.trim();
+
+
+        if (!text) {
+            return [];
+        }
+
+
+        const lines =
+            text
+                .split(/\n+/)
+                .map(item =>
+                    item
+                        .replace(
+                            /^[-•*]\s*/,
+                            ""
+                        )
+                        .trim()
+                )
+                .filter(Boolean);
+
+
+        if (lines.length > 1) {
+            return lines;
+        }
+
+
+        return text
+            .split(",")
+            .map(item =>
+                item.trim()
+            )
+            .filter(Boolean);
+
+    }
+
+
+    if (typeof value === "object") {
+
+        return Object.values(value)
+            .flat(Infinity)
+            .filter(Boolean)
+            .map(item =>
+                String(item).trim()
+            )
+            .filter(Boolean);
+
+    }
+
+
+    return [
+        String(value)
+    ];
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
 </html>
